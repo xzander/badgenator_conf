@@ -19,14 +19,20 @@ class BadgeSet < ActiveRecord::Base
   validates_format_of :image, :with => %r{\.(png|gif|jpg)$}i, :message => 'wrong extension of image', :allow_blank => true
 
   def name_is_empty
-  	if name.blank? and source.blank?
-  	  errors.add(:name, "can't be empty")
-  	elsif name.blank?
-  	  name = source.gsub(/\.[^\.]*$/, '')
+  	if source
+  		source_filename = source.original_filename
+  	else
+  		source_filename = nil
   	end
 
-  	if source.blank?
-  		badges = nil
+  	if name.blank? and source_filename.blank?
+  	  errors.add(:name, "can't be empty")
+  	elsif name.blank?
+  	  self.name = source_filename.gsub(/\.[^\.]*$/, '')
+  	end
+
+  	if source_filename.blank?
+  		self.badges = nil
   	end
   end
 
