@@ -4,4 +4,6 @@ Badgenator::Application.routes.draw do
   match 'archive/new' => 'badge_sets#create'
   
   root :to => 'welcome#index'
+
+  match '*a', :to => 'errors#routing'
 end

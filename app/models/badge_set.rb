@@ -11,4 +11,6 @@ class BadgeSet < ActiveRecord::Base
   attr_accessor :badges
   
   validates :name, presence: true
+
+  validates_format_of :image, :with => %r{\.(png|gif|jpg)$}i
 end
