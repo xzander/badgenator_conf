@@ -19,4 +19,24 @@ ActiveRecord::Schema.define(:version => 20121120151935) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "badge_sets", :force => true do |t|
+    t.string   "name",     :null => false
+    t.string "source", :null => true
+    t.string "image", :null => true
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "badges", :force => true do |t|
+    t.string "name", :null => false
+    t.string "surname", :null => true
+    t.string "profession", :null => true
+    t.string   "company",     :null => false
+    t.integer "badge_set_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index :badges, :badge_set_id
+
 end
