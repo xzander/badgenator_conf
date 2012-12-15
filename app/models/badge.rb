@@ -9,4 +9,5 @@ class Badge < ActiveRecord::Base
   validates :surname, :length => { :minimum => 2, :maximum => 30 }
   validates :profession, :length => { :minimum => 3, :maximum => 30 }
   validates :badge_set_id, presence: true
+
 end
